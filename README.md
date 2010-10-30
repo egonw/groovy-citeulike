@@ -11,4 +11,4 @@ All jars on which this code depends are included.
 On POSIX systems:
 
     export CLASSPATH=$( echo *.jar . | sed 's/ /:/g')
-    groovy cul2html.groovy
+    groovy cul2rdf.groovy
