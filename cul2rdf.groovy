@@ -19,8 +19,7 @@ papers = [
 http = new HTTPBuilder(culUrl)
 
 println "@prefix cito: <http://purl.org/spar/cito/> ."
-println "@prefix tag: <http://www.holygoat.co.uk/owl/redwood/tag/> ."
-println "@prefix egonwtag: <http://www.citeulike.org/user/egonw/tag/> ."
+println "@prefix tag: <http://www.citeulike.org/user/egonw/tag/> ."
 println "@prefix egonwart: <http://www.citeulike.org/user/egonw/article/> ."
 println "@prefix fabio: <http://purl.org/spar/fabio/> ."
 println ""
@@ -43,11 +42,13 @@ papers.each { paper ->
                       " egonwart:$paper ."
               tripleCount++
             } else if (!artTag.startsWith("cito--")) {
-              println "egonwart:" + article.article_id + " tag:taggedWithTag egonwtag:$artTag ." 
+              println "egonwart:" + article.article_id + " tag:hasTag \"$artTag\" ." 
             }
           }
           if (tripleCount > 0) {
-            println "egonwart:" + article.article_id + " fabio:title " + "\"$article.title\" ."
+            title = article.title
+            title = title.replaceAll("\\{","").replaceAll("\\}","")
+            println "egonwart:" + article.article_id + " fabio:title " + "\"$title\" ."
           }
         }
       }
