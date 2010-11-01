@@ -21,6 +21,7 @@ http = new HTTPBuilder(culUrl)
 papers.each { paper ->
   println "# Processing $paper..."
   citotags.each { tag ->
+    sleep(2000)
     citation = "$tag--$paper".toLowerCase()
     http.request(Method.valueOf("GET"), JSON) {
       uri.path = "/json/user/egonw/tag/$citation"
@@ -40,4 +41,5 @@ papers.each { paper ->
       }
     }
   }
+  sleep(5000)
 }
